@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "./Button";
 import { ExternalLinkIcon, GithubIcon, CodeIcon } from "./Icons";
@@ -25,11 +25,35 @@ export default function ProjectCard({
   repo_url,
 }: ProjectCardProps) {
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
 
     <div className="project-card border-zinc-300 border-solid border-1 rounded-xl hover:shadow-md transition-shadow duration-300">
-      <div className="flex flex-col">
-        <div className="top image relative w-full h-[233px]">
+      {/* Mobile Accordion */}
+      <div
+        className="cursor-pointer py-6 md:hidden"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="flex justify-between items-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-zinc-200">
+              <Image src={image_url} alt={image_alt} fill className="object-cover" />
+            </div>
+            <h3 className="font-semibold text-zinc-900">{title}</h3>
+          </div>
+          <svg
+            className={`h-5 w-5 text-zinc-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className={`flex flex-col ${!isOpen ? 'hidden md:flex' : ''}`}>
+        <div className={`top image relative w-full h-[233px] ${isOpen ? 'hidden md:block' : ''}`}>
           <Image
             src={image_url}
             alt={image_alt}
@@ -38,8 +62,8 @@ export default function ProjectCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-        <div className="bottom text flex flex-col gap-6 py-8 px-4">
-          <h2 className="text-zinc-950 font-semibold text-xl mb-[-12px]">{title}</h2>
+        <div className="bottom text flex flex-col gap-6 px-4 md:py-8 md:py-1 pb-8">
+          <h2 className={`text-zinc-950 font-semibold text-xl mb-[-12px] ${isOpen ? 'hidden md:block' : ''}`}>{title}</h2>
           <p className="text-zinc-600 text-base">{description}</p>
           <div className="flex gap-2 tags">
             {tags.map((tag) => (
