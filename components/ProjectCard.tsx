@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Button from "./Button";
-import { ExternalLinkIcon, GithubIcon, CodeIcon } from "./Icons";
+import { ExternalLinkIcon, GithubIcon } from "./Icons";
 
 interface ProjectCardProps {
   title: string;
@@ -58,7 +58,7 @@ export default function ProjectCard({
             src={image_url}
             alt={image_alt}
             fill
-            className="object-cover"
+            className="object-cover rounded-t-xl"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
