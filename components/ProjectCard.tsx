@@ -29,7 +29,7 @@ export default function ProjectCard({
 
   return (
 
-    <div className="project-card border-zinc-300 border-solid border-1 rounded-xl hover:shadow-md transition-shadow duration-300">
+    <div className="project-card border-zinc-300 border-solid border-1 rounded-xl hover:shadow-xl transition-shadow duration-300">
       {/* Mobile Accordion */}
       <div
         className="cursor-pointer py-6 md:hidden"
@@ -53,7 +53,7 @@ export default function ProjectCard({
 
       {/* Content */}
       <div className={`flex flex-col ${!isOpen ? 'hidden md:flex' : ''}`}>
-        <div className={`top image relative w-full h-[233px] ${isOpen ? 'hidden md:block' : ''}`}>
+        <div className={`top image relative w-full h-[233px] border-b-1 border-zinc-200 ${isOpen ? 'hidden md:block' : ''}`}>
           <Image
             src={image_url}
             alt={image_alt}
@@ -65,11 +65,11 @@ export default function ProjectCard({
         <div className="bottom text flex flex-col gap-6 px-4 md:py-8 md:py-1 pb-8">
           <h2 className={`text-zinc-950 font-semibold text-xl mb-[-12px] ${isOpen ? 'hidden md:block' : ''}`}>{title}</h2>
           <p className="text-zinc-600 text-base">{description}</p>
-          <div className="flex gap-2 tags">
+          <div className="flex gap-2 tags flex-wrap">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600"
+                className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-950"
               >
                 {tag}
               </span>
