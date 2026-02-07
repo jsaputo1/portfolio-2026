@@ -19,7 +19,7 @@ export default function ProjectList({ projects, categories }: ProjectListProps) 
     return (
         <div>
             {/* Filter Section */}
-            <div className="flex gap-2 py-2.5 flex-wrap justify-start md:px-6 md:justify-center mb-8">
+            <div className="flex gap-2 py-2.5 flex-wrap justify-start mb-6">
                 <Filter
                     isActive={activeFilter === "All"}
                     onClick={() => setActiveFilter("All")}
@@ -36,7 +36,7 @@ export default function ProjectList({ projects, categories }: ProjectListProps) 
                     </Filter>
                 ))}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16 md:gap-6 gap-2">
                 {filteredProjects && filteredProjects.length > 0 ? (
                     filteredProjects.map((project) => (
                         <ProjectCard
